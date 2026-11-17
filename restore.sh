@@ -11,7 +11,7 @@ SHELL_JSON="$CONFIG_DIR/shell.json"
 echo "==> Restoring default borders in Caelestia Shell..."
 
 if [[ ! -f "$SHELL_JSON" ]]; then
-    echo "No shell.json found at $SHELL_JSON."
+    echo "Error: No shell.json found at $SHELL_JSON."
     exit 1
 fi
 

@@ -1,25 +1,25 @@
 # Caelestia Remove Borders 🖥️
 
-Configuración y script para remover los bordes decorativos de pantalla en **Caelestia Shell**, manteniendo únicamente la barra lateral funcional y maximizando el espacio de trabajo en monitores y laptops.
+A simple configuration guide and helper script to remove the outer decorative screen borders from **Caelestia Shell**, keeping only the functional sidebar to maximize screen real estate on laptops and monitors.
 
 ---
 
-## 📌 ¿Por qué este ajuste?
+## 📌 Why this tweak?
 
-Por defecto, Caelestia Shell incluye un marco perimetral decorativo (`border.thickness = 10` y `border.rounding = 25`) que rodea la pantalla por arriba, abajo y a la derecha. 
+By default, Caelestia Shell draws a decorative outer border frame (`border.thickness = 10` and `border.rounding = 25`) surrounding the top, right, and bottom edges of the screen.
 
-En pantallas de laptops (como 13" o 14") o configuraciones orientadas a productividad, estos márgenes reducen el espacio útil reservado para ventanas en Hyprland (`reserved: 60 10 10 10`).
+On smaller displays (such as 13" or 14" laptop screens) or productivity-focused workflows, these margins take away valuable workspace reserved for windows in Hyprland (`reserved: 60 10 10 10`).
 
-Con este ajuste:
-- La zona de exclusión pasa de `reserved: 60 10 10 10` a `reserved: 56 0 0 0`.
-- Las ventanas de tus aplicaciones aprovechan el 100% de la altura y anchura disponible.
-- La barra lateral izquierda sigue funcionando con todos sus widgets e indicadores.
+With this configuration:
+- The screen exclusion zone changes from `reserved: 60 10 10 10` to `reserved: 56 0 0 0`.
+- Tiled applications utilize 100% of the available display height and width.
+- The left sidebar remains fully functional with all quick toggles, tray icons, and workspace indicators intact.
 
 ---
 
-## 🚀 Instalación Rápida
+## 🚀 Quick Installation
 
-Ejecuta el script de instalación en tu terminal:
+Run the installation script in your terminal:
 
 ```bash
 git clone https://github.com/MethX0/caelestia-remove-borders.git
@@ -28,22 +28,22 @@ chmod +x install.sh
 ./install.sh
 ```
 
-El script:
-1. Crea un respaldo automático de tu archivo `~/.config/caelestia/shell.json`.
-2. Aplica `thickness: 0` y `rounding: 0` a la propiedad `border`.
-3. Recarga Caelestia Shell en caliente sin cerrar tu sesión.
+What the script does:
+1. Automatically creates a timestamped backup of your current `~/.config/caelestia/shell.json`.
+2. Sets `thickness: 0` and `rounding: 0` under the `border` property.
+3. Hot-reloads Caelestia Shell in the background without closing your active windows or session.
 
 ---
 
-## 🛠️ Método Manual
+## 🛠️ Manual Configuration
 
-Si prefieres hacerlo a mano, abre tu archivo de configuración:
+If you prefer applying the change manually, open your configuration file:
 
 ```bash
 nano ~/.config/caelestia/shell.json
 ```
 
-Agrega o modifica la sección `"border"` dentro del objeto JSON principal:
+Add or update the `"border"` section within the root JSON object:
 
 ```json
 {
@@ -54,7 +54,7 @@ Agrega o modifica la sección `"border"` dentro del objeto JSON principal:
 }
 ```
 
-Luego recarga Caelestia Shell con el siguiente comando:
+Then reload Caelestia Shell by executing:
 
 ```bash
 caelestia shell -d -r
@@ -62,28 +62,28 @@ caelestia shell -d -r
 
 ---
 
-## 🔄 Cómo Restaurar los Bordes Originales
+## 🔄 How to Restore Default Borders
 
-Si en cualquier momento deseas volver a los bordes por defecto:
+If you ever wish to revert back to Caelestia's default decorative borders:
 
 ```bash
 ./restore.sh
 ```
 
-O edita manualmente `shell.json` estableciendo `"thickness": 10` y `"rounding": 25`.
+Or manually edit `~/.config/caelestia/shell.json` and set `"thickness": 10` and `"rounding": 25`.
 
 ---
 
-## 💡 Tip Adicional: Gaps de Ventanas en Hyprland
+## 💡 Bonus Tip: Hyprland Window Gaps
 
-Si también deseas reducir o eliminar los espacios entre ventanas dentro de Hyprland para aprovechar aún más la pantalla, puedes ajustar en `~/.config/hypr/variables.lua`:
+If you want to reclaim even more screen real estate by reducing or removing the gaps between application windows in Hyprland, adjust the following values in `~/.config/hypr/variables.lua`:
 
 ```lua
-windowGapsIn        = 2,  -- Espacio entre ventanas adyacentes
-windowGapsOut       = 4,  -- Espacio entre las ventanas y el borde de pantalla
-singleWindowGapsOut = 4,  -- Espacio cuando solo hay una ventana activa
+windowGapsIn        = 2,  -- Gap between adjacent tiled windows
+windowGapsOut       = 4,  -- Outer gap between windows and screen edges
+singleWindowGapsOut = 4,  -- Outer gap when only a single window is active
 ```
 
 ---
 
-Desarrollado como aporte para la comunidad de **Caelestia Shell** y usuarios de **Hyprland**.
+Made for the **Caelestia Shell** and **Hyprland** community.
